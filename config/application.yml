@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: myApp
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        healthCheckPath: /my-health-check
+        healthCheckInterval: 2s
+        enabled: true
+        instanceId: ${spring.application.name}:${random.value}
+        tags: foo=bar, baz
+        instanceGroup: memo
+        instanceZone: Hihi
+        metadata:
+          key: value
+          name: thoai
+        catalogServicesWatch:
+          enabled: false
+server:
+  port: 9003
+
+
+cluster:
+  leader:
+    serviceName: cluster
+    serviceId: node-1
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: false
+    session:
+      ttl: 15
+      refresh: 7
+    election:
+      envelopeTemplate: services/%s/leader

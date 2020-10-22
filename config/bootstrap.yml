@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: myApp
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        prefix: config
+        format: FILES
+        watch:
+          delay: 10000
+        data-key: data
